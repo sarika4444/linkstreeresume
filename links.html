@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sarika Portfolio</title>
+
+  <!-- GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- ICONS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:'Poppins',sans-serif;
+      min-height:100vh;
+      overflow-x:hidden;
+
+      /* BACKGROUND */
+      background:
+      linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+      url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2070&auto=format&fit=crop');
+
+      background-size:cover;
+      background-position:center;
+      background-attachment:fixed;
+
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:40px 20px;
+      color:white;
+    }
+
+    /* FLOATING ORBS */
+
+    .orb{
+      position:fixed;
+      border-radius:50%;
+      filter:blur(50px);
+      opacity:0.35;
+      animation:float 10s infinite ease-in-out alternate;
+      z-index:0;
+    }
+
+    .orb1{
+      width:250px;
+      height:250px;
+      background:#7f5cff;
+      top:5%;
+      left:5%;
+    }
+
+    .orb2{
+      width:300px;
+      height:300px;
+      background:#00c2ff;
+      bottom:5%;
+      right:5%;
+      animation-delay:2s;
+    }
+
+    @keyframes float{
+      from{
+        transform:translateY(0px) translateX(0px);
+      }
+      to{
+        transform:translateY(-30px) translateX(20px);
+      }
+    }
+
+    /* MAIN CARD */
+
+    .container{
+      position:relative;
+      z-index:2;
+
+      width:100%;
+      max-width:950px;
+
+      backdrop-filter:blur(20px);
+      background:rgba(255,255,255,0.08);
+
+      border:1px solid rgba(255,255,255,0.15);
+
+      border-radius:30px;
+
+      padding:40px;
+
+      box-shadow:
+      0 8px 32px rgba(0,0,0,0.35);
+
+      animation:fadeIn 1.2s ease;
+    }
+
+    @keyframes fadeIn{
+      from{
+        opacity:0;
+        transform:translateY(30px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    /* HEADER */
+
+    .hero{
+      text-align:center;
+      margin-bottom:35px;
+    }
+
+    .hero h1{
+      font-size:3rem;
+      font-weight:700;
+      letter-spacing:1px;
+    }
+
+    .hero p{
+      margin-top:10px;
+      color:#d8d8d8;
+      font-size:1rem;
+      line-height:1.8;
+    }
+
+    .hero span{
+      color:#8ec5ff;
+      font-weight:600;
+    }
+
+    /* ACCORDION */
+
+    .accordion{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+
+    .card{
+      overflow:hidden;
+      border-radius:20px;
+      background:rgba(255,255,255,0.07);
+      border:1px solid rgba(255,255,255,0.12);
+
+      transition:0.5s ease;
+    }
+
+    .card:hover{
+      transform:translateY(-4px);
+      background:rgba(255,255,255,0.1);
+    }
+
+    .card-header{
+      padding:22px 25px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      cursor:pointer;
+      transition:0.4s;
+    }
+
+    .card-header:hover{
+      background:rgba(255,255,255,0.05);
+    }
+
+    .card-header h2{
+      font-size:1.1rem;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:600;
+    }
+
+    .card-header i{
+      transition:0.5s ease;
+    }
+
+    .card.active .card-header i{
+      transform:rotate(180deg);
+    }
+
+    .content{
+      max-height:0;
+      overflow:hidden;
+      transition:
+      max-height 0.7s ease,
+      padding 0.5s ease;
+      padding:0 25px;
+    }
+
+    .card.active .content{
+      max-height:1200px;
+      padding:0 25px 25px;
+    }
+
+    /* LINKS */
+
+    .links{
+      display:grid;
+      gap:14px;
+      margin-top:10px;
+    }
+
+    .links a{
+      text-decoration:none;
+      color:white;
+      padding:14px 18px;
+      border-radius:14px;
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.08);
+
+      transition:0.4s ease;
+
+      display:flex;
+      align-items:center;
+      gap:14px;
+      font-size:0.95rem;
+    }
+
+    .links a:hover{
+      transform:translateX(10px) scale(1.02);
+      background:rgba(255,255,255,0.13);
+      box-shadow:0 10px 25px rgba(0,0,0,0.25);
+    }
+
+    .links a i{
+      font-size:1.2rem;
+    }
+
+    /* CERTIFICATIONS GRID */
+
+    .cert-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:18px;
+      margin-top:15px;
+    }
+
+    .cert-card{
+      background:rgba(255,255,255,0.06);
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.1);
+
+      transition:0.5s ease;
+    }
+
+    .cert-card:hover{
+      transform:translateY(-8px) scale(1.03);
+      box-shadow:0 15px 30px rgba(0,0,0,0.3);
+    }
+
+    .cert-card img{
+      width:100%;
+      height:180px;
+      object-fit:cover;
+    }
+
+    .cert-card h3{
+      padding:16px;
+      font-size:1rem;
+      font-weight:500;
+    }
+
+    .cert-card a{
+      text-decoration:none;
+      color:white;
+    }
+
+    /* FOOTER */
+
+    .footer{
+      text-align:center;
+      margin-top:35px;
+      color:#d9d9d9;
+      font-size:0.9rem;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:768px){
+
+      .container{
+        padding:25px;
+      }
+
+      .hero h1{
+        font-size:2.2rem;
+      }
+
+      .card-header h2{
+        font-size:0.95rem;
+      }
+
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ORBS -->
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+
+  <div class="container">
+
+    <!-- HERO -->
+    <div class="hero">
+      <h1>Sarika Bobbala</h1>
+
+      <p>
+        Creative Developer • AI & ML Student • Problem Solver <br>
+        Passionate about building impactful digital experiences with
+        <span>beautiful UI</span>,
+        <span>AI</span>,
+        and
+        <span>modern web technologies</span>.
+      </p>
+    </div>
+
+    <!-- ACCORDION -->
+
+    <div class="accordion">
+
+      <!-- GITHUB -->
+
+      <div class="card">
+        <div class="card-header">
+          <h2><i class="fa-brands fa-github"></i> GitHub</h2>
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+
+        <div class="content">
+          <div class="links">
+            <a href="https://github.com/sarika4444" target="_blank">
+              <i class="fa-brands fa-github"></i>
+              github.com/sarika4444
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- LINKEDIN -->
+
+      <div class="card">
+        <div class="card-header">
+          <h2><i class="fa-brands fa-linkedin"></i> LinkedIn</h2>
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+
+        <div class="content">
+          <div class="links">
+            <a href="https://linkedin.com/in/sarika-bobbala-b43a04349" target="_blank">
+              <i class="fa-brands fa-linkedin"></i>
+              linkedin.com/in/sarika-bobbala-b43a04349
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PORTFOLIO -->
+
+      <div class="card">
+        <div class="card-header">
+          <h2><i class="fa-solid fa-globe"></i> Portfolio</h2>
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+
+        <div class="content">
+          <div class="links">
+            <a href="https://sarikas-glowscape-34.lovable.app" target="_blank">
+              <i class="fa-solid fa-link"></i>
+              sarikas-glowscape-34.lovable.app
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CERTIFICATIONS -->
+
+      <div class="card">
+        <div class="card-header">
+          <h2><i class="fa-solid fa-certificate"></i> Certifications</h2>
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+
+        <div class="content">
+
+          <div class="cert-grid">
+
+            <div class="cert-card">
+              <a href="https://media.licdn.com/dms/image/v2/D5622AQGSApdIZEm-NA/feedshare-image-high-res/B56ZsMHsYcGgAs-/0/1765434906755?e=1781136000&v=beta&t=L3cVNN-OouQE5yKAMStmeR4KqdpG16Lt8FyInL_IsoA" target="_blank">
+                <img src="https://media.licdn.com/dms/image/v2/D5622AQGSApdIZEm-NA/feedshare-image-high-res/B56ZsMHsYcGgAs-/0/1765434906755?e=1781136000&v=beta&t=L3cVNN-OouQE5yKAMStmeR4KqdpG16Lt8FyInL_IsoA">
+                <h3>Mobile Product Management</h3>
+              </a>
+            </div>
+
+            <div class="cert-card">
+              <a href="https://media.licdn.com/dms/image/v2/D4D22AQFIEuLCFC7VsA/feedshare-shrink_800/B4DZowLo7VIkAg-/0/1761744950969?e=1781136000&v=beta&t=ST5NO2wGG3VBaUr-eraHpcisKZQ-HIscRI9D9mOXdpg" target="_blank">
+                <img src="https://media.licdn.com/dms/image/v2/D4D22AQFIEuLCFC7VsA/feedshare-shrink_800/B4DZowLo7VIkAg-/0/1761744950969?e=1781136000&v=beta&t=ST5NO2wGG3VBaUr-eraHpcisKZQ-HIscRI9D9mOXdpg">
+                <h3>AI Advanced</h3>
+              </a>
+            </div>
+
+            <div class="cert-card">
+              <a href="https://media.licdn.com/dms/image/v2/D4D22AQGfH0f4Hqapdw/feedshare-shrink_1280/B4DZowLo7HGsAw-/0/1761744951837?e=1781136000&v=beta&t=BZWTebnPriVRXEblz3HTi3Q-kItFDH9iRVQyeMniI_s" target="_blank">
+                <img src="https://media.licdn.com/dms/image/v2/D4D22AQGfH0f4Hqapdw/feedshare-shrink_1280/B4DZowLo7HGsAw-/0/1761744951837?e=1781136000&v=beta&t=BZWTebnPriVRXEblz3HTi3Q-kItFDH9iRVQyeMniI_s">
+                <h3>AI Foundation</h3>
+              </a>
+            </div>
+
+            <div class="cert-card">
+              <a href="https://media.licdn.com/dms/image/v2/D4D22AQGHfkiA-ohVKA/feedshare-shrink_1280/B4DZnHPhpRIgAs-/0/1759984362979?e=1781136000&v=beta&t=d2CKRR977QXnhjTe2wxaO53RVok2smoQ8gipZJsd2MI" target="_blank">
+                <img src="https://media.licdn.com/dms/image/v2/D4D22AQGHfkiA-ohVKA/feedshare-shrink_1280/B4DZnHPhpRIgAs-/0/1759984362979?e=1781136000&v=beta&t=d2CKRR977QXnhjTe2wxaO53RVok2smoQ8gipZJsd2MI">
+                <h3>Intel AI For All</h3>
+              </a>
+            </div>
+
+            <div class="cert-card">
+              <a href="https://media.licdn.com/dms/image/v2/D4D22AQHfy4qFA5Sq1g/feedshare-shrink_1280/B4DZlscnp_JgAs-/0/1758461067124?e=1781136000&v=beta&t=heFoH3rSUHXyFGHbWamRWGsFKYqWt15E-8quOI46XRI" target="_blank">
+                <img src="https://media.licdn.com/dms/image/v2/D4D22AQHfy4qFA5Sq1g/feedshare-shrink_1280/B4DZlscnp_JgAs-/0/1758461067124?e=1781136000&v=beta&t=heFoH3rSUHXyFGHbWamRWGsFKYqWt15E-8quOI46XRI">
+                <h3>Deloitte Data Analytics</h3>
+              </a>
+            </div>
+
+            <div class="cert-card">
+              <a href="https://media.licdn.com/dms/image/v2/D4D22AQG9ni_-BGVXcw/feedshare-shrink_800/B4DZlmd_tbGsAg-/0/1758360764182?e=1781136000&v=beta&t=r9WFwAanpHiO_vgGIVHHPCSRZts-xGvx6QVkItAmQr4" target="_blank">
+                <img src="https://media.licdn.com/dms/image/v2/D4D22AQG9ni_-BGVXcw/feedshare-shrink_800/B4DZlmd_tbGsAg-/0/1758360764182?e=1781136000&v=beta&t=r9WFwAanpHiO_vgGIVHHPCSRZts-xGvx6QVkItAmQr4">
+                <h3>Deloitte Cyber</h3>
+              </a>
+            </div>
+
+            <div class="cert-card">
+              <a href="https://media.licdn.com/dms/image/v2/D4D22AQHQ6RvkIPf6uQ/feedshare-shrink_800/B4DZlSUDJCJIAg-/0/1758022612791?e=1781136000&v=beta&t=392-vrskraoDHsrvba1_YG5xhMW4AqLJy2PEFOSu1A4" target="_blank">
+                <img src="https://media.licdn.com/dms/image/v2/D4D22AQHQ6RvkIPf6uQ/feedshare-shrink_800/B4DZlSUDJCJIAg-/0/1758022612791?e=1781136000&v=beta&t=392-vrskraoDHsrvba1_YG5xhMW4AqLJy2PEFOSu1A4">
+                <h3>Walmart Advanced Software Engineering</h3>
+              </a>
+            </div>
+
+            <div class="cert-card">
+              <a href="https://media.licdn.com/dms/image/v2/D4D22AQF1-FvVeH1C-A/feedshare-shrink_800/B4DZlC43AtIYAg-/0/1757763827051?e=1781136000&v=beta&t=SG6X-m13RXZBdHp1vF010bW5lpvRC1fMHemLRfWqiZQ" target="_blank">
+                <img src="https://media.licdn.com/dms/image/v2/D4D22AQF1-FvVeH1C-A/feedshare-shrink_800/B4DZlC43AtIYAg-/0/1757763827051?e=1781136000&v=beta&t=SG6X-m13RXZBdHp1vF010bW5lpvRC1fMHemLRfWqiZQ">
+                <h3>TATA Gen AI Data Analytics</h3>
+              </a>
+            </div>
+
+            <div class="cert-card">
+              <a href="https://media.licdn.com/dms/image/v2/D4D22AQF8mMfPQSKBTQ/feedshare-shrink_800/B4DZk.DBzNGsAg-/0/1757682607061?e=1781136000&v=beta&t=9uCuBYYLqD-OrUjnX3pn9hgxtHfN0WKnHkCFh1JFjwY" target="_blank">
+                <img src="https://media.licdn.com/dms/image/v2/D4D22AQF8mMfPQSKBTQ/feedshare-shrink_800/B4DZk.DBzNGsAg-/0/1757682607061?e=1781136000&v=beta&t=9uCuBYYLqD-OrUjnX3pn9hgxtHfN0WKnHkCFh1JFjwY">
+                <h3>AWS Solutions Architecture</h3>
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CODING PLATFORMS -->
+
+      <div class="card">
+        <div class="card-header">
+          <h2><i class="fa-solid fa-code"></i> Coding Platforms</h2>
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+
+        <div class="content">
+          <div class="links">
+
+            <a href="https://www.hackerrank.com/profile/bobbalasarika111" target="_blank">
+              <i class="fa-brands fa-hackerrank"></i>
+              HackerRank
+            </a>
+
+            <a href="https://leetcode.com/u/Wr6ESokMoM/" target="_blank">
+              <i class="fa-solid fa-laptop-code"></i>
+              LeetCode
+            </a>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECTS -->
+
+      <div class="card">
+        <div class="card-header">
+          <h2><i class="fa-solid fa-diagram-project"></i> Projects</h2>
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+
+        <div class="content">
+          <div class="links">
+
+            <a href="https://github.com/sarika4444/grievancehub.git" target="_blank">
+              <i class="fa-solid fa-folder-open"></i>
+              Grievance Hub
+            </a>
+
+            <a href="https://github.com/sarika4444/career-trajectory-engine.git" target="_blank">
+              <i class="fa-solid fa-folder-open"></i>
+              Career Trajectory Engine
+            </a>
+
+            <a href="https://github.com/sarika4444/Wordwave.git" target="_blank">
+              <i class="fa-solid fa-folder-open"></i>
+              WordWave
+            </a>
+
+            <a href="https://github.com/sarika4444/previous-year-exam-papers" target="_blank">
+              <i class="fa-solid fa-folder-open"></i>
+              Xam
+            </a>
+
+            <a href="https://github.com/sarika4444/Frame-it-" target="_blank">
+              <i class="fa-solid fa-folder-open"></i>
+              Frame It
+            </a>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      Designed & Developed by Sarika ✨
+    </div>
+
+  </div>
+
+  <script>
+
+    const cards = document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+
+      const header = card.querySelector(".card-header");
+
+      header.addEventListener("click", () => {
+
+        card.classList.toggle("active");
+
+      });
+
+    });
+
+  </script>
+
+</body>
+</html>
